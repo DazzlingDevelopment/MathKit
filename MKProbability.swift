@@ -12,7 +12,7 @@ class MKProbability {
     var MathKitBasics = MKBasics()
     
     // Permutation Basic
-    func permutation(totalObj: Int, objToHandle: Int) -> Double {
+    func permutation(totalObj: Double, objToHandle: Double) -> Double {
         var numerator = MathKitBasics.factorial(totalObj)
         var denominator = MathKitBasics.factorial(totalObj - objToHandle)
         var final: Double = Double(numerator) / Double(denominator)
@@ -20,9 +20,9 @@ class MKProbability {
     }
     
     // PermutationRepitition
-    func permutationWithRepitition(totalObj: Int, similarObjects: [Int]) -> Double {
+    func permutationWithRepitition(totalObj: Double, similarObjects: [Double]) -> Double {
         var numerator = MathKitBasics.factorial(totalObj)
-        var denominator = 1
+        var denominator: Double = 1
         var iterator = 0
         while iterator < similarObjects.count {
             denominator *= MathKitBasics.factorial(similarObjects[iterator])
@@ -34,7 +34,7 @@ class MKProbability {
     }
     
     // PermutationCircular
-    func permutationCircular(totalObj: Int) -> Double {
+    func permutationCircular(totalObj: Double) -> Double {
         var numerator = MathKitBasics.factorial(totalObj)
         var denominator = totalObj
         var final = Double(numerator) / Double(denominator)
@@ -43,7 +43,7 @@ class MKProbability {
     
     
     // Combination Basic
-    func combination(totalObj: Int, objToHandle: Int) -> Double {
+    func combination(totalObj: Double, objToHandle: Double) -> Double {
         var numerator = MathKitBasics.factorial(totalObj)
         var denominator = ((MathKitBasics.factorial(totalObj - objToHandle)) * (MathKitBasics.factorial(objToHandle)))
         var final: Double = Double(numerator) / Double(denominator)
