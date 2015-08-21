@@ -36,7 +36,7 @@ Each class has it's own functionality. MKGeometry, for instance, performs math c
 * MKSolver - MKSolver is a special class which does not contain equations for a specific branch of mathematics. Instead, it is a class made to solve expressions. Expressions can contain these operators: (,),+,-,*,/,%,^. MKSolver will convert Infex expressions to Postfex form using Dijkstra's Shunting-Yard algorithm, then perform math. Items placed inside parentheses will be operated on first, thuse following the order of operations. 
 
 ## TO-DO
-1. Finish making all functions input and output Doubles instead of Integers (Functions were originally made to only accept Integers, but then I realized the stupidity of that).
+1. ~~Finish making all functions input and output Doubles instead of Integers (Functions were originally made to only accept Integers, but then I realized the stupidity of that).~~ **Done**
 2. Add more equations for MKProbability, MKRealWorldData, MKPhysics, and MKGeometry
 3. Add MKCalculus and MKSequences to MathKit
 4. Add more operands to MKSolver (Factorials, roots, Sin, Cos, Tan, etc..)
