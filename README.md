@@ -14,7 +14,7 @@ println(results)
 Output:
 [1953128.0]
 
-With three lines of code, you have solved and printed an expression.
+With three lines of code, you have solved and printed an expression!
 
 ## Dependencies
 Some classes depend on other classes. MKGeometry and MKSolver, for example, both rely on MKBasics for some basic math. Below is a list of dependencies:
