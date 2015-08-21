@@ -16,6 +16,20 @@ class MKSolver {
     
     func solve(var equ: [String]) -> [String] {
         "Converting Infex to Postfex.."
+        var openParenthese = 0
+        var closeParenthese = 0
+        for checkingToken in equ {
+            if checkingToken == "(" {
+                openParenthese++
+            } else if checkingToken == ")" {
+                closeParenthese++
+            }
+        }
+        if openParenthese != closeParenthese {
+            outputArray.removeAll(keepCapacity: true)
+            outputArray.append("[ERROR 01] There are not the same amount of opening parentheses and closing parentheses!")
+            return outputArray
+        }
         for (index, token) in enumerate(equ) {
             if opDic[token] != nil {
                 if token == "(" {
@@ -134,7 +148,11 @@ class MKSolver {
                     outputArray[i] = "\(results)"
                     outputArray.removeAtIndex(i - 2)
                     outputArray.removeAtIndex(i - 2)
-                    //                case "!":
+                case "!":
+                    let mkbasics = MKBasics()
+                    let tmp = mkbasics.factorial((outputArray[i - 1] as NSString).doubleValue)
+                    outputArray[i] = "\(tmp)"
+                    outputArray.removeAtIndex(i - 1)
                 case "%":
                     if nums >= 1 {
                         var tmp = (outputArray[i - 1] as NSString).doubleValue / 100
@@ -142,7 +160,9 @@ class MKSolver {
                         outputArray.removeAtIndex(i - 1)
                     }
                 default:
-                    println("Unrecognized operator.")
+                    outputArray.removeAll(keepCapacity: false)
+                    outputArray.append("An unknown error has occured.")
+                    return outputArray
                 }
                 i = 0
             } else {
@@ -153,5 +173,5 @@ class MKSolver {
         }
         return outputArray
     }
-
+    
 }
