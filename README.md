@@ -1,6 +1,8 @@
 # MathKit
 A series of classes which make doing math in Swift easy and painless.
 
+If you use any MathKit classes, please link back to this page and provide credit to myself (Dazzling Development).
+
 ## Installation
 Download desired .swift files and drag them into your project.
 
