@@ -1,0 +1,28 @@
+//
+//  MKRealWorldData.swift
+//  MathKit
+//
+//  Created by Dazzling Development on 5/26/15.
+//  Copyright (c) 2015 DAZ. All rights reserved.
+//
+
+import Foundation
+
+class MKRealWorldData {
+    var MathKitBasics = MKBasics()
+    
+    func interestCompoundContinuously(principle: Double, rate: Double, time: Double) -> Double {
+        var final: Double!
+        let power = rate * time
+        final = principle * MathKitBasics.power(MathKitBasics.e, power: power)
+        return final
+    }
+    
+    func interestCompound(principle: Double, rate: Double, numberOfCompounds: Double, numberOfTime: Double) -> Double {
+        return principle * MathKitBasics.power(1 + (rate / numberOfCompounds), power: numberOfCompounds * numberOfTime)
+    }
+    
+    func exponentialGrowthOrDecay(principle: Double, rate: Double, numberOfTime: Double) -> Double {
+        return principle * MathKitBasics.power(1 + rate, power: numberOfTime)
+    }
+}
