@@ -6,11 +6,11 @@ Download desired .swift files and drag them into your project.
 
 ## Usage
 Using MathKit is simple! Simple create an instance of the desired class, then access it's functions. For example, if you wish to solve an expression, simple do this:
-'''Swift
+```Swift
 let mathSolver = MKSolver()
 let results = mathSolver.solve(["3", "+", "5", "^", "9"])
 println(results)
-'''
+```
 Output:
 [1953128.0]
 
