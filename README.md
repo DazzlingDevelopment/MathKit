@@ -13,8 +13,7 @@ let mathSolver = MKSolver()
 let results = mathSolver.solve(["3", "+", "5", "^", "9"])
 println(results)
 ```
-Output:
-[1953128.0]
+Output: [1953128.0]
 
 With three lines of code, you have solved and printed an expression!
 
