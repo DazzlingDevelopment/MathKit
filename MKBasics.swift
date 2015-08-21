@@ -13,12 +13,21 @@ class MKBasics {
     let pi = 3.1415926536
     
     // Factorial
-    func factorial(num: Int) -> Int{
-        var iterator: Int = num
-        var total: Int = 1
-        while iterator <= num && iterator > 0 {
-            total *= iterator
-            iterator++
+    func factorial(num: Double) -> Double {
+        var iterator: Double = num
+        var total: Double = 1
+        if num % 1 == 0 {
+            while iterator <= num && iterator > 0 {
+                total *= iterator
+                iterator--
+            }
+            
+        } else {
+            while iterator <= num && iterator > 0 {
+                total *= iterator
+                iterator--
+            }
+            total *= sqrt(pi)
         }
         return total
     }
