@@ -1,0 +1,204 @@
+//
+//  MKPhysics.swift
+//  MathKit
+//
+//  Created by Dazzling Development on 5/26/15.
+//  Copyright (c) 2015 DAZ. All rights reserved.
+//
+
+import Foundation
+
+class MKPhysics {
+    let MathKitBasics = MKBasics()
+    struct constants {
+        let protonMass = ["Value":1.67e-27, "Unit":"kg"]
+        let neutronMass = ["Value":1.67e-27, "Unit":"kg"]
+        let electronMass = ["Value":9.11e-31, "Unit":"kg"]
+        let magnitudeOfElectronCharge = ["Value":1.60e-19, "Unit":"C"]
+        let avogadrosNumber = ["Value": 6.02e23, "Unit":"mol^-1"]
+        let universalGasConstant = ["Value":8.31, "Unit":"J / (mol * K)"]
+        let boltzmannsConstant = ["Value":1.38e-23, "Unit":"J / K"]
+        let speedOfLight = ["Value":3.00e8, "Unit":"m / s"]
+        let plancksConstant = ["Value": 6.63e-34, "Unit":"J * s"]
+        let vacuumPermittivity = ["Value":8.85e-12, "Unit":"C^2 / N * m^2"]
+        let coulombsLawConstant = ["Value": 9.0e9, "Unit":"N * m^2 / C^2"]
+        let vacuumPermeability = ["Value":12.566370614e-7, "Unit":"(T * m) / A"]
+        let magneticConstant = ["Value":10e-7, "Unit":"(T * m) / A"]
+        let universalGravitationalConstant = ["Value":6.67e11, "Unit":"m^3 / kg * s^2"]
+        let accelerationGravityEarth = ["Value":9.8, "Unit":"m / s^2"]
+        let oneAtmospherePressure = ["Value":1.0e5, "Unit":"N / m^2"]
+        let oneElectronVolt = ["Value":1.60e-19, "Unit":"J"]
+    }
+    struct units {
+        let meter = "m"
+        let kilogram = "kg"
+        let second = "s"
+        let ampere = "A"
+        let kelvin = "K"
+        let mole = "mol"
+        let hertz = "Hz"
+        let newton = "N"
+        let pascal = "Pa"
+        let joule = "J"
+        let watt = "W"
+        let coulomb = "C"
+        let volt = "V"
+        let ohm = "Ω"
+        let henry = "H"
+        let farad = "F"
+        let tesla = "T"
+        let degreeCelcius = "°C"
+        let electronVolt = "eV"
+    }
+    
+    
+    func whatEquationToUse() {
+        println("'whatEquationToUse()' is not yet available for use.")
+    }
+    
+    // SEC: - MOTION IN ONE DIMENSION
+    func displacement(finalPos: Double, initialPos: Double) -> Double {
+        return finalPos - initialPos
+    }
+    
+    func averageVelocity(displacement: Double, timeInterval: Double) -> Double {
+        return displacement / timeInterval
+    }
+    
+    func changeInVelocity(finalVelocity: Double, initialVelocity: Double) -> Double {
+        return finalVelocity - initialVelocity
+    }
+    
+    func averageAcceleration(changeInVelocity: Double, timeRequiredForChange: Double) -> Double {
+        return changeInVelocity / timeRequiredForChange
+    }
+    
+    func displacementWithConstantAcceleration(velocityInitial: Double, velocityFinal: Double, timeTaken: Double) -> Double {
+        return 1/2 * (velocityFinal + velocityInitial) * timeTaken
+    }
+    
+    func velocityWithConstantAcceleration(velocityInitial: Double, acceleration: Double, timeInterval: Double) -> Double {
+        return velocityInitial + acceleration * timeInterval
+    }
+    
+    func finalVelocityAfterDisplacement(velocityInitial: Double, acceleration: Double, displacement: Double) -> Double {
+        return MathKitBasics.rootCustom(MathKitBasics.power(velocityInitial, power: 2) + 2 * acceleration * displacement, root: 2)
+    }
+    
+    // SEC: - FORCES AND THE LAWS OF MOTION
+    func netForceNewtonSecondLaw(mass: Double, acceleration: Double) -> Double {
+        return mass * acceleration
+    }
+    
+    // SEC: - WORK AND ENERGY
+    func workDoneByConstantForce(netForce: Double, displacement: Double, cosAngle: Double) -> Double {
+        return netForce * displacement * cosAngle
+    }
+    
+    func kineticEnergy(mass: Double, speed: Double) -> Double {
+        return 1/2 * mass * MathKitBasics.power(speed, power: 2)
+    }
+    
+    func gravitationalPotentialEnergy(mass: Double, freeFallAcceleration: Double, height: Double, shouldUseDefaultFreeFallAcceleration: Bool) -> Double {
+        var ffa: Double!
+        if shouldUseDefaultFreeFallAcceleration == true {
+            ffa = constants().accelerationGravityEarth["Value"] as! Double
+        } else {
+            ffa = freeFallAcceleration
+        }
+        return mass * ffa * height
+    }
+    
+    func elasticPotentialEnergy(springConstant: Double, distanceCompressed: Double) -> Double {
+        return 1/2 * springConstant * MathKitBasics.power(distanceCompressed, power: 2)
+    }
+    
+    func power(work: Double, timeInterval: Double) -> Double {
+        return work / timeInterval
+    }
+    
+    func powerAlternative(force: Double, speed: Double) -> Double {
+        return force * speed
+    }
+    
+    // SEC: - MOMENTUM AND COLLISIONS
+    func momentum(mass: Double, velocity: Double) -> Double {
+        return mass * velocity
+    }
+    
+    // SEC: - CIRCULAR MOTION AND GRAVITATION
+    func centripetalAcceleration(tangentialSpeed: Double, radiusOfCirclePath: Double) -> Double {
+        return MathKitBasics.power(tangentialSpeed, power: 2) / radiusOfCirclePath
+    }
+    
+    func centripetalForce(tangentialSpeed: Double, mass: Double, radiusOfCirclePath: Double) -> Double {
+        return mass * (MathKitBasics.power(tangentialSpeed, power: 2) / radiusOfCirclePath)
+    }
+    
+    func newtonsLawUniversalGravitation(mass1: Double, mass2: Double, distanceBetweenMasses: Double) -> Double {
+        return (constants().universalGravitationalConstant["Value"] as! Double) * ((mass1 * mass2) / MathKitBasics.power(distanceBetweenMasses, power: 2))
+    }
+    
+    func periodOfObjectInCircularOrbit(mearnRadius: Double, massOfCentralObject: Double) -> Double {
+        return 2 * MathKitBasics.pi * MathKitBasics.rootCustom(MathKitBasics.power(mearnRadius, power: 3) / (constants().universalGravitationalConstant["Value"] as! Double * massOfCentralObject), root: 2)
+    }
+    
+    func speedOfObjectInCircularOrbit(massOfCentralObject: Double, meanRadius: Double) -> Double {
+        return MathKitBasics.rootCustom(constants().universalGravitationalConstant["Value"] as! Double * (massOfCentralObject / meanRadius), root: 2)
+    }
+    
+    // SEC: - FLUID MECHANICS
+    func massDensity(mass: Double, volume: Double) -> Double {
+        return mass / volume
+    }
+    
+    func pressure(force: Double, area: Double) -> Double {
+        return force / area
+    }
+    
+    // SEC: - HEAT
+    func celciusToFarenheitConversion(celciusTemperature: Double) -> Double {
+        return (9/5 * celciusTemperature) + 32
+    }
+    
+    func celciusToKelvinConversion(celciusTemperature: Double) -> Double {
+        return celciusTemperature + 273.15
+    }
+    
+    func farenheitToCelciusConversion(farenheitTemperature: Double) -> Double {
+        return 5/9 * farenheitTemperature - 32
+    }
+    
+    func kelvinToCelciusConversion(kelvinTemperature: Double) -> Double {
+        return kelvinTemperature - 273.15
+    }
+    
+    func specificHeatCapacity(energyTransferredAsHeat: Double, mass: Double, changeInTemperature: Double) -> Double {
+        return energyTransferredAsHeat / (mass * changeInTemperature)
+    }
+    
+    // SEC: - THERMODYNAMICS
+    func workDoneByGas(pressure: Double, volumeChange: Double) -> Double {
+        return pressure * volumeChange
+    }
+    
+    func efficiencyOfHeatEngine(netWorkDoneByEngine: Double, energyAddedToEngineAsHeat: Double) -> Double {
+        return netWorkDoneByEngine / energyAddedToEngineAsHeat
+    }
+    
+    // SEC: - VIBRATIONS AND WAVES
+    func hookesLaw(springConstant: Double, displacement: Double) -> Double {
+        return -1 * (springConstant * displacement)
+    }
+    
+    func periodOfSimplePendulumInSimpleHarmonicMotion(lengthOfPendulum: Double, freeFallAcceleration: Double) -> Double {
+        return 2 * MathKitBasics.pi * MathKitBasics.rootCustom((lengthOfPendulum) / (constants().accelerationGravityEarth["Value"] as! Double), root: 2)
+    }
+    
+    func speedOfWave(frequency: Double, wavelength: Double) -> Double {
+        return frequency * wavelength
+    }
+    
+    // SEC: - SOUND
+    
+}
